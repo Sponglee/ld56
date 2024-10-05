@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Code.Game.Config.RemoteConfigs.RemotePages.PlayerPage
 {
-    [CreateAssetMenu(fileName = "PlayerRemotePage", menuName = "ScriptableObjects/Config/PlayerRemotePage", order = 0)]
+    [CreateAssetMenu(fileName = "PlayerSettings", menuName = "ScriptableObjects/Config/PlayerSettings", order = 0)]
     public class PlayerRemoteConfigPage : ScriptableObject, IRemoteConfigPage
     {
-        [field: SerializeField] public int SwitchToRunPlayerSpeed { get; private set; }
+        [field: SerializeField] public int PlayerRunSpeed { get; private set; }
 
         [field: SerializeField] public float RotationSpeed { get; private set; }
 

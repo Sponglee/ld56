@@ -1,4 +1,5 @@
-﻿using ResourceInfo.Code.Core.ResourceInfo.ProjectResources.UI;
+﻿using ResourceInfo.Code.Core.ResourceInfo.ModulesResources;
+using ResourceInfo.Code.Core.ResourceInfo.ProjectResources.UI;
 
 namespace ResourceInfo.Code.Core.ResourceInfo.ProjectResources
 {
@@ -6,15 +7,15 @@ namespace ResourceInfo.Code.Core.ResourceInfo.ProjectResources
     {
         public string GroupId { get; }
         public CommonUIResources CommonUIResources { get; }
-        public readonly MiniMapResources MiniMapResources;
-        public readonly ObjectivesResources ObjectivesResources;
+        public readonly CommonGameplayResourceContainer CommonGameplay;
+        public readonly string RemoteConfigPagesContainer;
 
         public ProjectResourceContainer(string groupId)
         {
             GroupId = groupId;
+            RemoteConfigPagesContainer = "RemoteConfigPagesContainer";
             CommonUIResources = new CommonUIResources(groupId);
-            MiniMapResources = new MiniMapResources(groupId);
-            ObjectivesResources = new ObjectivesResources(groupId);
+            CommonGameplay = new CommonGameplayResourceContainer(groupId);
         }
     }
 }

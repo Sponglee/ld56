@@ -1,5 +1,6 @@
 ﻿using System;
 using Code.Game.Config.RemoteConfigs.RemotePages.Base;
+using Code.Game.Config.RemoteConfigs.RemotePages.CameraPage;
 using Code.Game.Config.RemoteConfigs.RemotePages.PlayerPage;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Code.Game.Config.RemoteConfigs
     public class RemoteConfigPagesContainer : ScriptableObject, IRemoteConfigPagesContainer
     {
         [SerializeField] private PlayerRemoteConfigPage _playerRemoteConfigPage;
+        [SerializeField] private CameraControlsRemotePage _cameraRemoteConfigPage;
 
         private IRemoteConfigPage[] _remoteConfigPages;
 
@@ -18,6 +20,8 @@ namespace Code.Game.Config.RemoteConfigs
         {
             _remoteConfigPages = new IRemoteConfigPage[]
             {
+                _playerRemoteConfigPage,
+                _cameraRemoteConfigPage
             };
 
             foreach (var remoteConfigPage in _remoteConfigPages)

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using Code.Core.CameraControl.CameraMovement.Config;
 using Code.Core.CharactersControlModules.Player.PlayerMovement.Config;
 using Code.Core.Config;
 using Code.Core.Config.MainLocalConfig;
 using Code.Game.Config.RemoteConfigs;
 using Code.Game.Config.RemoteConfigs.RemotePages.Base;
+using Code.Game.Config.RemoteConfigs.RemotePages.CameraPage;
 using Code.Game.Config.RemoteConfigs.RemotePages.PlayerPage;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -74,17 +76,25 @@ namespace Code.Game.Config.Parser
             {
                 case PlayerRemoteConfigPage playerRemoteConfigPage:
                     return ParsePlayerPage(playerRemoteConfigPage);
+                case CameraControlsRemotePage cameraRemoteConfigPage:
+                    return ParseCameraPage(cameraRemoteConfigPage);
                 default:
                     Debug.LogError($"Need add logic for parse {remoteConfigPage.GetType()}");
                     return null;
             }
         }
 
+        private IConfigPage ParseCameraPage(CameraControlsRemotePage remoteConfigPage)
+        {
+            return null;
+            // new GameplayCameraConfigPage(rotationSpeed, moveSpeedByLevel, switchToRunSpeed);
+        }
+
         private IConfigPage ParsePlayerPage(PlayerRemoteConfigPage remoteConfigPage)
         {
             var moveSpeedByLevel = ParseMoveSpeed(remoteConfigPage.MoveSpeedByLevels);
             var rotationSpeed = remoteConfigPage.RotationSpeed;
-            var switchToRunSpeed = remoteConfigPage.SwitchToRunPlayerSpeed;
+            var switchToRunSpeed = remoteConfigPage.PlayerRunSpeed;
             return new PlayerConfigPage(rotationSpeed, moveSpeedByLevel, switchToRunSpeed);
         }
 

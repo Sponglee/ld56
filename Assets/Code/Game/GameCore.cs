@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Code.Core.CameraControl.CameraMovement;
 using Code.Core.CameraControl.Provider;
@@ -13,23 +14,22 @@ using Cysharp.Threading.Tasks;
 using ResourceInfo.Code.Core.ResourceInfo;
 using UnityEngine;
 
-public class GameCore : Singleton<MonoBehaviour>
+public class GameCore : Singleton<MonoBehaviour>, IDisposable
 {
     private readonly ICompositeDisposable _compositeDisposable = new CompositeDisposable();
-    private readonly CancellationTokenSource _closeSceneTokenSource = new();
-
     private AddressableResourceLoader _resourceLoader;
     private ITickHandler _tickHandler;
 
     private CameraProvider _cameraProvider;
     private ILocalConfig _localConfig;
 
-    private Camera _mainCamera;
     [SerializeField] Transform _mainCanvas;
 
     private async void Awake()
     {
-        var token = _closeSceneTokenSource.Token;
+        DontDestroyOnLoad(gameObject);
+
+        var token = Application.exitCancellationToken;
 
         _tickHandler = InitializeTickHandler();
         _compositeDisposable.AddDisposable(_tickHandler);
@@ -47,15 +47,9 @@ public class GameCore : Singleton<MonoBehaviour>
     {
     }
 
-    private void OnDestroy()
+    public void Dispose()
     {
-        if (!_closeSceneTokenSource.IsCancellationRequested)
-        {
-            _closeSceneTokenSource.Cancel();
-        }
-
-        _closeSceneTokenSource.Dispose();
-        _compositeDisposable.Dispose();
+        _compositeDisposable?.Dispose();
     }
 
     private ITickHandler InitializeTickHandler()
@@ -71,24 +65,25 @@ public class GameCore : Singleton<MonoBehaviour>
 
     private async UniTask<CameraProvider> InitializeCamera(CancellationToken token)
     {
-        var remoteConfigPagesContainerResourceId =
-            ResourceIdContainer.ModulesResourceContainer.CommonGameplay.CameraRigView;
+        var cameraResourceId =
+            ResourceIdContainer.ProjectResourceContainer.CommonGameplay.CameraRigView;
+
+        var cameraViewPrefab =
+            await _resourceLoader
+                .LoadResourceAsync<CameraMovementView>(cameraResourceId, token);
 
         var cameraModel = new CameraMovementModel();
-        var cameraView =
-            await _resourceLoader
-                .LoadResourceAsync<CameraMovementView>(remoteConfigPagesContainerResourceId, token);
+        var cameraView = Instantiate(cameraViewPrefab, transform).GetComponent<CameraMovementView>();
         var cameraPresenter = new CameraMovementPresenter(cameraView, cameraModel, _tickHandler, _localConfig);
         var cameraProvider = new CameraProvider(cameraPresenter);
 
-        _mainCamera = Camera.main;
         return cameraProvider;
     }
 
     private async UniTask<ILocalConfig> InitializeConfig(CancellationToken token)
     {
         var remoteConfigPagesContainerResourceId =
-            ResourceIdContainer.ModulesResourceContainer.RemoteConfigPagesContainer;
+            ResourceIdContainer.ProjectResourceContainer.RemoteConfigPagesContainer;
 
         var remoteConfigPagesContainer =
             await _resourceLoader.LoadResourceAsync<RemoteConfigPagesContainer>(remoteConfigPagesContainerResourceId,
