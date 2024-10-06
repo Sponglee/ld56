@@ -34,7 +34,7 @@ public class MoneyManager : Singleton<MoneyManager>
     private void Start()
     {
         moneyCanvas = CanvasManager.Instance.GetCanvas("MoneyCanvas");
-        Money = 0;
+        Money = GameSettings.Instance.moneyStartAmount;
     }
 
     private void OnDestroy()

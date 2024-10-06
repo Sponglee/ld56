@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameSettings : Singleton<GameSettings>
 {
+    public int distractionMoneyAmount;
     public int obstacleHitMoneyAmount;
     public int moneyAddAmount;
+    [FormerlySerializedAs("moneyStatAmount")] public int moneyStartAmount = 250;
     public int rentCost;
 
 

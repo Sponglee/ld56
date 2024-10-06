@@ -20,8 +20,15 @@ public class RentText : MonoBehaviour
 
     private void OnDestroy()
     {
-        MoneyManager.Instance.moneyChanged -= UpdateText;
-        GameStateManager.Instance.dayPassed -= UpdateRent;
+        if (MoneyManager.Instance != null)
+        {
+            MoneyManager.Instance.moneyChanged -= UpdateText;
+        }
+
+        if (GameStateManager.Instance != null)
+        {
+            GameStateManager.Instance.dayPassed -= UpdateRent;
+        }
     }
 
     public void UpdateRent()
