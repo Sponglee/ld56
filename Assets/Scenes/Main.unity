@@ -1851,7 +1851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316110817fd6c43349d2db34e63fa16b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameState: 2
+  GameState: 0
 --- !u!1 &909138493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,7 +2673,7 @@ GameObject:
   - component: {fileID: 1358231295}
   - component: {fileID: 1358231294}
   m_Layer: 5
-  m_Name: Button
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2745,7 +2745,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 899798083}
         m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
-        m_MethodName: StartClickHandler
+        m_MethodName: RestartClickHandler
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4148,6 +4148,7 @@ MonoBehaviour:
   canvases:
   - {fileID: 1488867634}
   - {fileID: 295429245}
+  - {fileID: 197048365}
 --- !u!1001 &1895064733964928776
 PrefabInstance:
   m_ObjectHideFlags: 0

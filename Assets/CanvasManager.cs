@@ -1,18 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanvasManager : MonoBehaviour
+public class CanvasManager : Singleton<CanvasManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public Transform[] canvases;
+
+    private void Awake()
     {
-        
+        for (int i = 0; i < canvases.Length; i++)
+        {
+            var canvas = canvases[i];
+            canvas.gameObject.SetActive(false);
+        }
+
+
+        ToggleCanvas("MenuCanvas", true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ToggleCanvas(string name, bool toggle)
     {
-        
+        Transform targetCanvas = null;
+        for (int i = 0; i < canvases.Length; i++)
+        {
+            var canvas = canvases[i];
+            if (canvas.name == name)
+            {
+                targetCanvas = canvas;
+            }
+        }
+
+        if (targetCanvas != null)
+        {
+            targetCanvas.gameObject.SetActive(toggle);
+        }
     }
 }
