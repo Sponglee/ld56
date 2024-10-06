@@ -1,42 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TiltController : MonoBehaviour
 {
-    [SerializeField] private Transform[] segments;
-    [SerializeField] private float angleToOffset = 5f;
-    [SerializeField] private float tiltSpeed = 5f;
+    [SerializeField] private SpringJoint[] segments;
 
-    [SerializeField] private AnimationCurve segmentCurve;
+    [SerializeField] private Vector2 tiltSpeed;
+    [SerializeField] private float tiltTreshold = 45;
+    [SerializeField] private InertiaController inertiaController;
 
-    // Update is called once per frame
+    private bool isBroken = false;
+
+
     void Update()
     {
-        if (Input.GetAxis("Horizontal") != default)
+        var inputDirection = Input.GetAxisRaw("Horizontal");
+
+        if (inputDirection != default)
         {
-            transform.RotateAround(Vector3.forward, Input.GetAxis("Horizontal") * Time.deltaTime * tiltSpeed);
+            transform.RotateAround(Vector3.right,
+                inputDirection * Time.deltaTime *
+                (inertiaController.IsSameDirection(inputDirection > 0 ? 1 : -1)
+                    ? tiltSpeed.x
+                    : tiltSpeed.y) * inertiaController.Inertia);
+            return;
         }
 
-        UpdateSegments();
+        if (inertiaController.HasInertia())
+        {
+            transform.RotateAround(inertiaController.LastDirection == 1 ? Vector3.right : Vector3.left,
+                Time.deltaTime * tiltSpeed.x * inertiaController.Inertia);
+
+            return;
+        }
+
+        transform.rotation =
+            Quaternion.Lerp(transform.rotation, Quaternion.identity, Time.deltaTime * tiltSpeed.y);
+
+        CheckTilt();
     }
 
-    private void UpdateSegments()
+
+    private void CheckTilt()
     {
-        for (var i = 0; i < segments.Length; i++)
+        if (isBroken) return;
+        Debug.Log($"BaM! {Vector3.Dot(Vector3.up, transform.up)} < {tiltTreshold}");
+
+        if (Vector3.Dot(Vector3.up, transform.up) < tiltTreshold)
         {
-            var segment = segments[i];
+            for (int i = segments.Length - 1; i >= 0; i--)
+            {
+                var segment = segments[i];
+                var body = segment.GetComponent<Rigidbody>();
+                segment.breakForce = 0;
+                body.AddForce(Vector3.up * 10f, ForceMode.Impulse);
+            }
 
-            var localPosition = segment.localPosition;
-            var segmentEvaluation = (float)i / segments.Length;
-            localPosition =
-                new Vector3(
-                    segmentCurve.Evaluate(segmentEvaluation) * angleToOffset *
-                    (segment.position - transform.position).normalized.x,
-                    localPosition.y,
-                    localPosition.z);
-
-            segment.localPosition = localPosition;
+            isBroken = true;
         }
     }
 }
