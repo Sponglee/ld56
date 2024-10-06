@@ -1,22 +1,28 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerStateController : MonoBehaviour
 {
     public PlayerState PlayerState;
-
+    public ToggleCoatController toggleCoatController;
+    public GroundChecker groundChecker;
+    public TiltController tiltController;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Outside"))
         {
             ChangeState(PlayerState.Assembled);
-
-            transform.rotation = Quaternion.identity;
+            groundChecker.IsChecking = true;
+            toggleCoatController.ToggleCoat(true);
+            tiltController.TiltUp();
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Inside"))
         {
             ChangeState(PlayerState.Running);
-            transform.rotation = Quaternion.Euler(90, 0, 0);
+            groundChecker.IsChecking = false;
+            toggleCoatController.ToggleCoat(false);
+            tiltController.TiltSideways();
         }
     }
 

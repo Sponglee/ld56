@@ -19,6 +19,29 @@ public class TiltController : MonoBehaviour
         groundChecker.groundHit -= CheckTilt;
     }
 
+    public void TiltUp()
+    {
+        transform.rotation = Quaternion.identity;
+
+        for (int i = 0; i < segments.Length; i++)
+        {
+            var segmentTransform = segments[i].transform;
+
+            segmentTransform.localRotation = Quaternion.identity;
+        }
+    }
+
+    public void TiltSideways()
+    {
+        transform.rotation = Quaternion.Euler(90, 0, 0);
+
+        for (int i = 0; i < segments.Length; i++)
+        {
+            var segmentTransform = segments[i].transform;
+
+            segmentTransform.localRotation = Quaternion.Euler(-90, 0f, 0);
+        }
+    }
 
     private void CheckTilt()
     {

@@ -7,17 +7,17 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 10f;
 
-    private InputController inputController;
+    private InputManager _inputManager;
 
     private void Awake()
     {
-        inputController = InputController.Instance;
+        _inputManager = InputManager.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var move = new Vector2(inputController.HorizontalAxis, 0f);
+        var move = new Vector2(_inputManager.HorizontalAxis, 0f);
 
         if (move != Vector2.zero)
         {

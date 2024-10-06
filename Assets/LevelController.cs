@@ -1,22 +1,26 @@
+using System;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
+    [SerializeField] private float spawnTreshold = -150;
+    public Vector3 SpawnPosition;
     [SerializeField] private LevelSegment[] levelSegments;
     [SerializeField] private float moveSpeed;
 
-    private InputController inputController;
+    private InputManager _inputManager;
 
     private void Awake()
     {
-        inputController = InputController.Instance;
+        _inputManager = InputManager.Instance;
+        SpawnPosition = new Vector3(0, 0, -spawnTreshold);
 
-        inputController.horizontalInputPressed += UpdateLevelMovement;
+        _inputManager.horizontalInputPressed += UpdateLevelMovement;
     }
 
     private void OnDestroy()
     {
-        inputController.horizontalInputPressed -= UpdateLevelMovement;
+        _inputManager.horizontalInputPressed -= UpdateLevelMovement;
     }
 
 
@@ -27,6 +31,11 @@ public class LevelController : MonoBehaviour
             var segment = levelSegments[i];
 
             segment.transform.Translate(Vector3.back * (moveSpeed * Time.deltaTime));
+
+            if (segment.transform.position.z <= spawnTreshold)
+            {
+                segment.transform.position = SpawnPosition;
+            }
         }
     }
 }

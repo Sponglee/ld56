@@ -9,21 +9,21 @@ public class JumpController : MonoBehaviour
     public float speed = 2f; // Speed of the movement
     public float amplitude = 1f; // Amplitude of the up and down movement
 
-    private InputController inputController;
+    private InputManager _inputManager;
 
     private Vector3 startPosition;
 
     void Start()
     {
         startPosition = target.localPosition;
-        inputController = InputController.Instance;
+        _inputManager = InputManager.Instance;
 
-        inputController.horizontalInputPressed += UpdateJump;
+        _inputManager.horizontalInputPressed += UpdateJump;
     }
 
     private void OnDestroy()
     {
-        inputController.horizontalInputPressed -= UpdateJump;
+        _inputManager.horizontalInputPressed -= UpdateJump;
     }
 
     private void UpdateJump(float axisValue)
