@@ -260,8 +260,9 @@ GameObject:
   - component: {fileID: 7924382756848348026}
   - component: {fileID: 3308596802070271887}
   - component: {fileID: 2394005401838337692}
+  - component: {fileID: 2651736001383844576}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: RentBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,6 +352,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2651736001383844576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2948125286629548333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efdeddd1af1a74080af018a523d15c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rentText: {fileID: 8255260622262191380}
+  daysText: {fileID: 610043662182874650}
 --- !u!1 &2960365514654974677
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +877,7 @@ GameObject:
   - component: {fileID: 3781408902853813975}
   - component: {fileID: 8255260622262191380}
   m_Layer: 0
-  m_Name: Text (TMP) (1)
+  m_Name: MoneyTrackText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -884,8 +899,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: -106}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -8, y: -52}
+  m_SizeDelta: {x: 442.98, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3781408902853813975
 CanvasRenderer:
@@ -949,7 +964,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1373,7 +1388,7 @@ GameObject:
   - component: {fileID: 2579490465546359644}
   - component: {fileID: 610043662182874650}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: DaysText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1395,7 +1410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.6, y: 10}
+  m_AnchoredPosition: {x: -7.6, y: 64}
   m_SizeDelta: {x: 320.44, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2579490465546359644
@@ -1460,7 +1475,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

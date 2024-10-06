@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,7 +17,7 @@ public class GameStateManager : Singleton<GameStateManager>
     {
         ChangeState(GameState.Paused);
 
-        currentDay = 1;
+        currentDay = 0;
     }
 
     public int GetCurrentDay()
@@ -42,13 +43,21 @@ public class GameStateManager : Singleton<GameStateManager>
             {
                 currentDay = 0;
                 MoneyManager.Instance.AddMoney(-rentCost);
+                
+                DOVirtual.DelayedCall(2f, () =>
+                {
+                    ChangeState(GameState.Playing);
+                    dayPassed?.Invoke();
+                });
                 //TADA
             }
             else
             {
-                // ChangeState(GameState.GameOver);
-                MoneyManager.Instance.AddMoney(-currentMoney);
-                //NO MONEY
+                DOVirtual.DelayedCall(2f, () =>
+                {
+                    ChangeState(GameState.GameOver);
+                    // MoneyManager.Instance.AddMoney(-currentMoney);
+                });
             }
         }
     }

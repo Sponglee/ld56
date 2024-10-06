@@ -29,7 +29,7 @@ public class RentText : MonoBehaviour
         maxRentDays = GameSettings.Instance.GetRentDays();
         currentDay = GameStateManager.Instance.GetCurrentDay();
 
-        daysText.text = $"RENT DUE IN: {maxRentDays - currentDay}";
+        daysText.text = $"RENT DUE IN: {maxRentDays - currentDay} DAYS";
     }
 
     private void UpdateText(int amount)

@@ -37,6 +37,11 @@ public class MoneyManager : Singleton<MoneyManager>
         Money = 0;
     }
 
+    private void OnDestroy()
+    {
+        
+    }
+
     public void AddMoney(int amount)
     {
         Money += amount;
