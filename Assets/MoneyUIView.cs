@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -14,6 +15,11 @@ public class MoneyUIView : MonoBehaviour
     void Awake()
     {
         MoneyManager.Instance.moneyChanged += MoneyHandler;
+    }
+
+    private void OnDestroy()
+    {
+        MoneyManager.Instance.moneyChanged -= MoneyHandler;
     }
 
     private void MoneyHandler(int amount)

@@ -32,11 +32,10 @@ public class MoneyManager : Singleton<MoneyManager>
         }
     }
 
-    private void Awake()
+    private void Start()
     {
-        Money = PlayerPrefs.GetInt("Money", 0);
-
         moneyCanvas = CanvasManager.Instance.GetCanvas("MoneyCanvas");
+        Money = PlayerPrefs.GetInt("Money", 0);
     }
 
     public void AddMoney(int amount)

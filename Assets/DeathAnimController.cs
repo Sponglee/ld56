@@ -7,15 +7,21 @@ public class DeathAnimController : MonoBehaviour
 {
     public Transform[] crosses;
 
+    private GameStateManager gameStateManager;
 
     private void Awake()
     {
-        GameStateManager.Instance.stateChanged += StateHandler;
+        gameStateManager = GameStateManager.Instance;
+
+        gameStateManager.stateChanged += StateHandler;
     }
 
     private void OnDestroy()
     {
-        GameStateManager.Instance.stateChanged -= StateHandler;
+        if (gameStateManager != null)
+        {
+            gameStateManager.stateChanged -= StateHandler;
+        }
     }
 
     private void ToggleCrosses(bool toggle)
