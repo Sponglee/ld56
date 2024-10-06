@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -6,11 +7,17 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 10f;
 
+    private InputController inputController;
+
+    private void Awake()
+    {
+        inputController = InputController.Instance;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        var move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        var move = new Vector2(inputController.HorizontalAxis, 0f);
 
         if (move != Vector2.zero)
         {

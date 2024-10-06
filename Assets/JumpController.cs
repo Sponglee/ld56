@@ -1,35 +1,39 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class JumpController : MonoBehaviour
 {
-    private Vector3 startScale;
+    public bool isJumping = true;
 
-    private Transform _transform;
+    public Transform target;
+    public float speed = 2f; // Speed of the movement
+    public float amplitude = 1f; // Amplitude of the up and down movement
 
+    private InputController inputController;
 
-    private void Awake()
+    private Vector3 startPosition;
+
+    void Start()
     {
-        _transform = transform;
+        startPosition = target.localPosition;
+        inputController = InputController.Instance;
 
-        startScale = _transform.lossyScale;
+        inputController.horizontalInputPressed += UpdateJump;
     }
 
-    public void Update()
+    private void OnDestroy()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            Jump();
-        }
+        inputController.horizontalInputPressed -= UpdateJump;
     }
 
-
-    private void Jump()
+    private void UpdateJump(float axisValue)
     {
+        isJumping = axisValue != default;
+
+        if (!isJumping) return;
+
+        float newY = startPosition.y + Mathf.Sin(Time.time * speed) * amplitude;
+
+        target.localPosition = new Vector3(target.localPosition.x, newY, target.localPosition.z);
     }
 }

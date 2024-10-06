@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
@@ -8,16 +5,28 @@ public class LevelController : MonoBehaviour
     [SerializeField] private LevelSegment[] levelSegments;
     [SerializeField] private float moveSpeed;
 
-    private void Update()
-    {
-        if (Input.GetAxis("Horizontal") != default)
-        {
-            for (int i = levelSegments.Length - 1; i >= 0; i--)
-            {
-                var segment = levelSegments[i];
+    private InputController inputController;
 
-                segment.transform.Translate(Vector3.back * (moveSpeed * Time.deltaTime));
-            }
+    private void Awake()
+    {
+        inputController = InputController.Instance;
+
+        inputController.horizontalInputPressed += UpdateLevelMovement;
+    }
+
+    private void OnDestroy()
+    {
+        inputController.horizontalInputPressed -= UpdateLevelMovement;
+    }
+
+
+    private void UpdateLevelMovement(float axisValue)
+    {
+        for (int i = levelSegments.Length - 1; i >= 0; i--)
+        {
+            var segment = levelSegments[i];
+
+            segment.transform.Translate(Vector3.back * (moveSpeed * Time.deltaTime));
         }
     }
 }
