@@ -15,7 +15,7 @@ public class DeathAnimController : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameStateManager.Instance.stateChanged += StateHandler;
+        GameStateManager.Instance.stateChanged -= StateHandler;
     }
 
     private void ToggleCrosses(bool toggle)
