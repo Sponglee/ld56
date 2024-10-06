@@ -28,14 +28,13 @@ public class MoneyManager : Singleton<MoneyManager>
             }
 
             moneyChanged?.Invoke(money);
-            PlayerPrefs.SetInt("Money", money);
         }
     }
 
     private void Start()
     {
         moneyCanvas = CanvasManager.Instance.GetCanvas("MoneyCanvas");
-        Money = PlayerPrefs.GetInt("Money", 0);
+        Money = 0;
     }
 
     public void AddMoney(int amount)

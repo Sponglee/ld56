@@ -15,4 +15,14 @@ public class GameSettings : Singleton<GameSettings>
 
 
     public float inputDelay;
+
+    public int GetRentCost()
+    {
+        return rentCost;
+    }
+
+    public int GetRentDays()
+    {
+        return daysToRent;
+    }
 }

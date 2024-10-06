@@ -23,6 +23,7 @@ public class PlayerStateController : MonoBehaviour
             groundChecker.IsChecking = false;
             toggleCoatController.ToggleCoat(false);
             tiltController.TiltSideways();
+            GameStateManager.Instance.NextDay();
         }
     }
 
