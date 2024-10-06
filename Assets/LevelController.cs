@@ -10,6 +10,8 @@ public class LevelController : MonoBehaviour
 
     private InputManager _inputManager;
 
+    private float inputTimer;
+
     private void Awake()
     {
         _inputManager = InputManager.Instance;

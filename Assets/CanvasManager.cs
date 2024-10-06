@@ -36,4 +36,19 @@ public class CanvasManager : Singleton<CanvasManager>
             targetCanvas.gameObject.SetActive(toggle);
         }
     }
+
+    public Transform GetCanvas(string name)
+    {
+        Transform targetCanvas = null;
+        for (int i = 0; i < canvases.Length; i++)
+        {
+            var canvas = canvases[i];
+            if (canvas.name == name)
+            {
+                targetCanvas = canvas;
+            }
+        }
+
+        return targetCanvas;
+    }
 }

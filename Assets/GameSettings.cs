@@ -12,4 +12,7 @@ public class GameSettings : Singleton<GameSettings>
 
     public int moveSpeed;
     public int daysToRent;
+
+
+    public float inputDelay;
 }

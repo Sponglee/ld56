@@ -1178,6 +1178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176addebf14804299a89e2bb370241f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moneyItemPrefab: {fileID: 7181249075395327561, guid: 9010d29a5bfef47bc9a2894aa936042e, type: 3}
 --- !u!1 &486548050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,6 +1453,7 @@ MonoBehaviour:
   rentCost: 1000
   moveSpeed: 5
   daysToRent: 5
+  inputDelay: 0
 --- !u!1 &581279490
 GameObject:
   m_ObjectHideFlags: 0
