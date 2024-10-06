@@ -2,7 +2,7 @@
 
 namespace Code.Core.MVP
 {
-public interface IModel : IDisposable
-{
-}
+    public interface IModel : IDisposable
+    {
+    }
 }

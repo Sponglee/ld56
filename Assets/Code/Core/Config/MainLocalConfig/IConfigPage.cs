@@ -1,7 +1,6 @@
 ﻿namespace Code.Core.Config.MainLocalConfig
 {
-public interface IConfigPage
-{
-    
-}
+    public interface IConfigPage
+    {
+    }
 }

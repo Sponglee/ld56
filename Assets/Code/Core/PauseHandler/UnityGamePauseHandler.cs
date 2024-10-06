@@ -3,80 +3,80 @@ using System.Collections.Generic;
 
 namespace Code.Core.PauseHandler
 {
-public class UnityGamePauseHandler : IPauseHandler
-{
-    private const int PauseTargetsCapacity = 20;
-    public bool IsPaused { get; private set; }
-    public event Action GamePaused;
-    public event Action GamePlayed;
-
-    List<Action> IPauseHandler.OnPauseHandlerTargets => _onPauseHandlerTargets;
-
-    List<Action> IPauseHandler.OnPlayHandlerTargets => _onPlayHandlerTargets;
-
-    private readonly List<Action> _onPauseHandlerTargets = new(PauseTargetsCapacity);
-    private readonly List<Action> _onPlayHandlerTargets = new(PauseTargetsCapacity);
-
-    public void Dispose()
+    public class UnityGamePauseHandler : IPauseHandler
     {
-        GamePaused = null;
-        GamePlayed = null;
-        _onPauseHandlerTargets?.Clear();
-        _onPlayHandlerTargets?.Clear();
-    }
+        private const int PauseTargetsCapacity = 20;
+        public bool IsPaused { get; private set; }
+        public event Action GamePaused;
+        public event Action GamePlayed;
 
-    public void PauseGame()
-    {
-        if (IsPaused)
+        List<Action> IPauseHandler.OnPauseHandlerTargets => _onPauseHandlerTargets;
+
+        List<Action> IPauseHandler.OnPlayHandlerTargets => _onPlayHandlerTargets;
+
+        private readonly List<Action> _onPauseHandlerTargets = new(PauseTargetsCapacity);
+        private readonly List<Action> _onPlayHandlerTargets = new(PauseTargetsCapacity);
+
+        public void Dispose()
         {
-            return;
+            GamePaused = null;
+            GamePlayed = null;
+            _onPauseHandlerTargets?.Clear();
+            _onPlayHandlerTargets?.Clear();
         }
 
-        GamePaused?.Invoke();
-
-        foreach (var handlerTarget in _onPauseHandlerTargets)
+        public void PauseGame()
         {
-            handlerTarget?.Invoke();
+            if (IsPaused)
+            {
+                return;
+            }
+
+            GamePaused?.Invoke();
+
+            foreach (var handlerTarget in _onPauseHandlerTargets)
+            {
+                handlerTarget?.Invoke();
+            }
+
+            IsPaused = true;
         }
 
-        IsPaused = true;
-    }
-
-    public void PlayGame()
-    {
-        if (!IsPaused)
+        public void PlayGame()
         {
-            return;
+            if (!IsPaused)
+            {
+                return;
+            }
+
+            GamePlayed?.Invoke();
+
+            foreach (var onPlayHandlerTarget in _onPlayHandlerTargets)
+            {
+                onPlayHandlerTarget?.Invoke();
+            }
+
+            IsPaused = false;
         }
 
-        GamePlayed?.Invoke();
-
-        foreach (var onPlayHandlerTarget in _onPlayHandlerTargets)
+        public void AddOnPauseHandlerTarget(Action target)
         {
-            onPlayHandlerTarget?.Invoke();
+            _onPauseHandlerTargets.Add(target);
         }
 
-        IsPaused = false;
-    }
+        public void AddOnPlayHandlerTarget(Action target)
+        {
+            _onPlayHandlerTargets.Add(target);
+        }
 
-    public void AddOnPauseHandlerTarget(Action target)
-    {
-        _onPauseHandlerTargets.Add(target);
-    }
+        public void RemoveOnPauseHandlerTarget(Action target)
+        {
+            _onPauseHandlerTargets.Add(target);
+        }
 
-    public void AddOnPlayHandlerTarget(Action target)
-    {
-        _onPlayHandlerTargets.Add(target);
+        public void RemoveOnPlayHandlerTarget(Action target)
+        {
+            _onPlayHandlerTargets.Add(target);
+        }
     }
-
-    public void RemoveOnPauseHandlerTarget(Action target)
-    {
-        _onPauseHandlerTargets.Add(target);
-    }
-
-    public void RemoveOnPlayHandlerTarget(Action target)
-    {
-        _onPlayHandlerTargets.Add(target);
-    }
-}
 }

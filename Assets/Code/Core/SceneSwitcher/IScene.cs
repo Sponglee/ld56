@@ -4,12 +4,12 @@ using Cysharp.Threading.Tasks;
 
 namespace Code.Core.SceneSwitcher
 {
-public interface IScene : IDisposable
-{
-    public string SceneId { get; }
-    protected internal ISceneContext SceneContext { get; }
-    protected internal ISceneSwitcher SceneSwitcher { get; }
+    public interface IScene : IDisposable
+    {
+        public string SceneId { get; }
+        protected internal ISceneContext SceneContext { get; }
+        protected internal ISceneSwitcher SceneSwitcher { get; }
 
-    public UniTask InitializeAsync(CancellationToken token);
-}
+        public UniTask InitializeAsync(CancellationToken token);
+    }
 }

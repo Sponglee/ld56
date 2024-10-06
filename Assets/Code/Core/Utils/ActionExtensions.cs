@@ -2,18 +2,18 @@
 
 namespace Code.Core.Utils
 {
-public static class ActionExtensions
-{
-    public static void SubscribeOnce(this Action action, Action callback)
+    public static class ActionExtensions
     {
-        Action wrapper = null;
-        wrapper = () =>
+        public static void SubscribeOnce(this Action action, Action callback)
         {
-            action -= wrapper;
-            callback();
-        };
+            Action wrapper = null;
+            wrapper = () =>
+            {
+                action -= wrapper;
+                callback();
+            };
 
-        action += wrapper;
+            action += wrapper;
+        }
     }
-}
 }

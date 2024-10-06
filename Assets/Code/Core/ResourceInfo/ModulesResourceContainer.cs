@@ -4,11 +4,8 @@ namespace ResourceInfo.Code.Core.ResourceInfo
 {
     public class ModulesResourceContainer
     {
-        
-
         public ModulesResourceContainer(string moduleResourcesGroupId)
         {
-          
         }
     }
 }

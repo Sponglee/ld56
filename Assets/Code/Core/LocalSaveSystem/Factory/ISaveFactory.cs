@@ -2,8 +2,8 @@
 
 namespace Code.Core.LocalSaveSystem.Factory
 {
-public interface ISaveFactory : IDisposable
-{
-    public ISavable[] CreateSaves();
-}
+    public interface ISaveFactory : IDisposable
+    {
+        public ISavable[] CreateSaves();
+    }
 }

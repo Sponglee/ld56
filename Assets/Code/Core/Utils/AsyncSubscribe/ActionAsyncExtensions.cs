@@ -4,37 +4,38 @@ using Cysharp.Threading.Tasks;
 
 namespace Code.Core.Utils.AsyncSubscribe
 {
-public static class ActionAsyncExtensions
-{
-    public static IDisposable SubscribeAsync(this Action action, Func<CancellationToken, UniTask> asyncCallback, CancellationToken token)
+    public static class ActionAsyncExtensions
     {
-        var wrapper = new AsyncOperationWrapper(asyncCallback, token);
-
-        Action wrappedAction = () => wrapper.InvokeAsync();
-
-        action += wrappedAction;
-
-        return new Unsubscriber(() => action -= wrappedAction);
-    }
-
-    private class AsyncOperationWrapper
-    {
-        private readonly Func<CancellationToken, UniTask> _asyncCallback;
-        private readonly CancellationToken _token;
-
-        public AsyncOperationWrapper(Func<CancellationToken, UniTask> asyncCallback, CancellationToken token)
+        public static IDisposable SubscribeAsync(this Action action, Func<CancellationToken, UniTask> asyncCallback,
+            CancellationToken token)
         {
-            _asyncCallback = asyncCallback;
-            _token = token;
+            var wrapper = new AsyncOperationWrapper(asyncCallback, token);
+
+            Action wrappedAction = () => wrapper.InvokeAsync();
+
+            action += wrappedAction;
+
+            return new Unsubscriber(() => action -= wrappedAction);
         }
 
-        public async void InvokeAsync()
+        private class AsyncOperationWrapper
         {
-            if (!_token.IsCancellationRequested)
+            private readonly Func<CancellationToken, UniTask> _asyncCallback;
+            private readonly CancellationToken _token;
+
+            public AsyncOperationWrapper(Func<CancellationToken, UniTask> asyncCallback, CancellationToken token)
             {
-                await _asyncCallback(_token);
+                _asyncCallback = asyncCallback;
+                _token = token;
+            }
+
+            public async void InvokeAsync()
+            {
+                if (!_token.IsCancellationRequested)
+                {
+                    await _asyncCallback(_token);
+                }
             }
         }
     }
-}
 }

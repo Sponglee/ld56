@@ -1,12 +1,12 @@
 namespace Code.Core.GameStats.Config
 {
-public struct GameStatsImage
-{
-    public string Id { get; }
-
-    public GameStatsImage(string id)
+    public struct GameStatsImage
     {
-        Id = id;
+        public string Id { get; }
+
+        public GameStatsImage(string id)
+        {
+            Id = id;
+        }
     }
-}
 }

@@ -9,19 +9,19 @@ using UnityEngine;
 #pragma warning disable 1591
 namespace DG.Tweening
 {
-	public static class DOTweenProShortcuts
+    public static class DOTweenProShortcuts
     {
         static DOTweenProShortcuts()
         {
             // Create stub instances of custom plugins, in order to allow IL2CPP to understand they must be included in the build
-#pragma warning disable 219
+        #pragma warning disable 219
             SpiralPlugin stub = new SpiralPlugin();
-#pragma warning restore 219
+        #pragma warning restore 219
         }
 
-        #region Shortcuts
+    #region Shortcuts
 
-        #region Transform
+    #region Transform
 
         /// <summary>Tweens a Transform's localPosition in a spiral shape.
         /// Also stores the transform as the tween's target so it can be used for filtered operations</summary>
@@ -35,11 +35,14 @@ namespace DG.Tweening
         public static Tweener DOSpiral(
             this Transform target, float duration, Vector3? axis = null, SpiralMode mode = SpiralMode.Expand,
             float speed = 1, float frequency = 10, float depth = 0, bool snapping = false
-        ) {
+        )
+        {
             if (Mathf.Approximately(speed, 0)) speed = 1;
             if (axis == null || axis == Vector3.zero) axis = Vector3.forward;
 
-            TweenerCore<Vector3, Vector3, SpiralOptions> t = DOTween.To(SpiralPlugin.Get(), () => target.localPosition, x => target.localPosition = x, (Vector3)axis, duration)
+            TweenerCore<Vector3, Vector3, SpiralOptions> t = DOTween
+                .To(SpiralPlugin.Get(), () => target.localPosition, x => target.localPosition = x, (Vector3)axis,
+                    duration)
                 .SetTarget(target);
 
             t.plugOptions.mode = mode;
@@ -50,10 +53,11 @@ namespace DG.Tweening
             return t;
         }
 
-        #endregion
+    #endregion
 
 #if true // PHYSICS_MARKER
-        #region Rigidbody
+
+    #region Rigidbody
 
         /// <summary>Tweens a Rigidbody's position in a spiral shape.
         /// Also stores the transform as the tween's target so it can be used for filtered operations</summary>
@@ -67,11 +71,13 @@ namespace DG.Tweening
         public static Tweener DOSpiral(
             this Rigidbody target, float duration, Vector3? axis = null, SpiralMode mode = SpiralMode.Expand,
             float speed = 1, float frequency = 10, float depth = 0, bool snapping = false
-        ) {
+        )
+        {
             if (Mathf.Approximately(speed, 0)) speed = 1;
             if (axis == null || axis == Vector3.zero) axis = Vector3.forward;
 
-            TweenerCore<Vector3, Vector3, SpiralOptions> t = DOTween.To(SpiralPlugin.Get(), () => target.position, target.MovePosition, (Vector3)axis, duration)
+            TweenerCore<Vector3, Vector3, SpiralOptions> t = DOTween
+                .To(SpiralPlugin.Get(), () => target.position, target.MovePosition, (Vector3)axis, duration)
                 .SetTarget(target);
 
             t.plugOptions.mode = mode;
@@ -82,9 +88,10 @@ namespace DG.Tweening
             return t;
         }
 
-        #endregion
+    #endregion
+
 #endif
 
-        #endregion
-	}
+    #endregion
+    }
 }
