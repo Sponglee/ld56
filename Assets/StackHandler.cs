@@ -88,6 +88,7 @@ public class StackHandler : MonoBehaviour
     public void RemovePaper()
     {
         if(_paperReciever == null) return;
+        if(stack.Count<=0) return;
         var paper = stack.Pop();
         paper.MoveTo(_paperReciever);
     }

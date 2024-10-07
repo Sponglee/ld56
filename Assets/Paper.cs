@@ -9,7 +9,7 @@ public class Paper : MonoBehaviour
     public void MoveTo(PaperReciever paperReciever)
     {
         endPoint = paperReciever.recievePoint;
-        transform.SetParent(null);
+        transform.SetParent(paperReciever.transform);
         transform.DOMove(endPoint.position, 1f).SetEase(Ease.OutCirc).OnComplete(() =>
         {
             MoneyManager.Instance.AddMoney(GameSettings.Instance.moneyAddAmount);
