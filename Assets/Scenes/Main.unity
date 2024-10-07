@@ -951,6 +951,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4192730754067127735, guid: 39884ddfd69e04d7da348d8c2977a3e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5240699175467938767, guid: 39884ddfd69e04d7da348d8c2977a3e4, type: 3}
       propertyPath: iterationText
       value: 
