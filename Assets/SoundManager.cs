@@ -43,9 +43,14 @@ public class SoundManager : MonoBehaviour
         AudioSource.Play();
     }
 
-    public void ToggleMusic(bool toggle)
+    public void Mute()
     {
-        AudioSource.mute = !toggle;
+        AudioSource.mute = true;
+    }
+
+    public void UnMute()
+    {
+        AudioSource.mute = false;
     }
     
 }
