@@ -41,7 +41,7 @@ public class LevelController : Singleton<LevelController>
         var boosDuration = GameSettings.Instance.boostDuration;
         _currentSpeed  = isBuff ? _fastSpeed : _slowSpeed;
 
-        DOVirtual.DelayedCall(boosDuration, ResetSpeed);
+        // DOVirtual.DelayedCall(boosDuration, ResetSpeed);
     }
 
     private void ResetSpeed()

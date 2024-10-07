@@ -11,12 +11,14 @@ public class GameStateManager : Singleton<GameStateManager>
 
     public GameState GameState;
 
+    public int Iteration = 0;
+    
     private int currentDay;
 
     private void Start()
     {
         ChangeState(GameState.Paused);
-
+        dayPassed?.Invoke();
         currentDay = 0;
     }
 
@@ -43,6 +45,7 @@ public class GameStateManager : Singleton<GameStateManager>
             {
                 currentDay = 0;
                 MoneyManager.Instance.AddMoney(-rentCost);
+                Iteration++;
                 
                 DOVirtual.DelayedCall(2f, () =>
                 {
@@ -60,6 +63,8 @@ public class GameStateManager : Singleton<GameStateManager>
                 });
             }
         }
+        
+        
     }
 
     public void StartClickHandler()
