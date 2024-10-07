@@ -3621,9 +3621,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4427419116016442148, guid: 2f38dda024edd4458b27c4c237e34a20, type: 3}
+      propertyPath: m_text
+      value: 'E
+
+        To Serve'
+      objectReference: {fileID: 0}
     - target: {fileID: 8612505927037940272, guid: 2f38dda024edd4458b27c4c237e34a20, type: 3}
       propertyPath: stackStep
-      value: 0.5
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8709087216149539222, guid: 2f38dda024edd4458b27c4c237e34a20, type: 3}
       propertyPath: m_Name
