@@ -27,6 +27,6 @@ public class MoneyUIView : MonoBehaviour
         var maxMoney = GameSettings.Instance.GetRentCost();
         var money = amount;
         _tweener?.Kill();
-        _tweener = moneyText.DOText($"${money}/{maxMoney}", fillDuration);
+        _tweener = moneyText.DOText($"BALANCE: ${money}/{maxMoney}", fillDuration);
     }
 }
