@@ -4,6 +4,8 @@ using UnityEngine;
 public class InputManager : Singleton<InputManager>
 {
     public event Action<float> horizontalInputPressed;
+    public event Action interactionPressed;
+
     private float horizontalAxis;
 
     private bool inputEnabled = true;
@@ -32,6 +34,11 @@ public class InputManager : Singleton<InputManager>
         if (horizontalAxis != default)
         {
             horizontalInputPressed?.Invoke(horizontalAxis);
+        }
+        
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            interactionPressed?.Invoke();
         }
     }
 

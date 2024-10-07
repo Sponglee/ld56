@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GroundChecker groundChecker;
-
+    [SerializeField] private StackHandler stackHandler;
     private int obstacleHitAmount;
 
     private void Awake()
@@ -28,6 +28,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        if (other.CompareTag("Office"))
+        {
+            stackHandler.Initialize();
+        }
+        
         if (other.CompareTag("Obstacle"))
         {
             MoneyManager.Instance.AddMoney(-obstacleHitAmount);
