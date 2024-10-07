@@ -44,14 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0539595c9084715994cf0ca7d7412c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distractionMoneyAmount: 15
+  distractionMoneyAmount: 20
   obstacleHitMoneyAmount: 150
   moneyAddAmount: 50
-  moneyStartAmount: 250
-  rentCost: 1000
-  rentIncrease: 0
-  daysToRent: 3
-  speedBoost: 1.5
+  moneyStartAmount: 160
+  rentCost: 1500
+  rentIncrease: 250
+  daysToRent: 2
+  speedBoost: 2
   boostDuration: 4
   moveSpeed: 5
   levelMoveSpeed: 7.5
