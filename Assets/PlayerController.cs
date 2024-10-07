@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
+    public Transform Pivot;
+    
     [SerializeField] private GroundChecker groundChecker;
     [SerializeField] private StackHandler stackHandler;
     private int obstacleHitAmount;

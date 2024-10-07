@@ -21,7 +21,7 @@ public class TiltController : MonoBehaviour
 
     public void TiltUp()
     {
-        transform.rotation = Quaternion.identity;
+        transform.rotation = Quaternion.Euler(15f, 0, 0);
 
         for (int i = 0; i < segments.Length; i++)
         {

@@ -9,26 +9,31 @@ public class JumpController : MonoBehaviour
     public float speed = 2f; // Speed of the movement
     public float amplitude = 1f; // Amplitude of the up and down movement
 
-    private InputManager _inputManager;
+    private GameStateManager _gameStateManager;
 
     private Vector3 startPosition;
 
     void Start()
     {
         startPosition = target.localPosition;
-        _inputManager = InputManager.Instance;
+        _gameStateManager = GameStateManager.Instance;
 
-        _inputManager.horizontalInputPressed += UpdateJump;
+        _gameStateManager.stateChanged += UpdateJump;
     }
 
     private void OnDestroy()
     {
-        _inputManager.horizontalInputPressed -= UpdateJump;
+        _gameStateManager.stateChanged -= UpdateJump;
     }
 
-    private void UpdateJump(float axisValue)
+    private void UpdateJump(GameState state)
     {
-        isJumping = axisValue != default;
+        isJumping = state == GameState.Playing;
+    }
+
+    private void Update()
+    {
+        // isJumping = axisValue != default;
 
         if (!isJumping) return;
 

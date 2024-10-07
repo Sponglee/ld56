@@ -17,8 +17,8 @@ public class GameSettings : Singleton<GameSettings>
 
     [Header("SPEED")]
     public float speedBoost = 1.5f;
+    public Vector2 acceleration;
     public float boostDuration = 1f;
-    public float moveSpeed;
     public float levelMoveSpeed;
     
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class PlayerStateController : MonoBehaviour
+public class PlayerStateController : Singleton<PlayerStateController>
 {
     public PlayerState PlayerState;
     public ToggleCoatController toggleCoatController;

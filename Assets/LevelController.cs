@@ -8,49 +8,54 @@ public class LevelController : Singleton<LevelController>
     public Vector3 SpawnPosition;
     [SerializeField] private LevelSegment[] levelSegments;
 
+    private GameStateManager _gameStateManager;
     private InputManager _inputManager;
-
+    private GameSettings _gameSettings;
+    private PlayerController _playerController;
+    private PlayerStateController _playerStateController;
+    
     private float inputTimer;
-    private float _moveSpeed;
-    private float _fastSpeed;
-    private float _slowSpeed;
     private float _currentSpeed;
-
-    private void Awake()
+    private void Start()
     {
+        _gameStateManager = GameStateManager.Instance;
         _inputManager = InputManager.Instance;
+        _gameSettings = GameSettings.Instance;
+        _playerController = PlayerController.Instance;
+        _playerStateController = PlayerStateController.Instance;
         SpawnPosition = new Vector3(0, 0, -spawnTreshold);
 
-        _inputManager.horizontalInputPressed += UpdateLevelMovement;
 
-        _moveSpeed = GameSettings.Instance.levelMoveSpeed;
-        _fastSpeed = _moveSpeed * GameSettings.Instance.speedBoost;
-        _slowSpeed = _moveSpeed / GameSettings.Instance.speedBoost;
 
-        _currentSpeed = _moveSpeed;
+        _currentSpeed = _gameSettings.levelMoveSpeed;
     }
 
     private void OnDestroy()
     {
-        _inputManager.horizontalInputPressed -= UpdateLevelMovement;
+        if (_inputManager != null)
+        {
+
+        }
     }
 
     public void BuffSpeed(bool isBuff)
     {
         var speedBoost = GameSettings.Instance.speedBoost;
         var boosDuration = GameSettings.Instance.boostDuration;
-        _currentSpeed  = isBuff ? _fastSpeed : _slowSpeed;
+        _currentSpeed += (isBuff ? speedBoost : 1/speedBoost);
 
         // DOVirtual.DelayedCall(boosDuration, ResetSpeed);
     }
 
     private void ResetSpeed()
     {
-        _currentSpeed = _moveSpeed;
+        _currentSpeed = _gameSettings.levelMoveSpeed;
     }
 
-    private void UpdateLevelMovement(float axisValue)
+    private void Update()
     {
+        if(_gameStateManager.GameState != GameState.Playing) return;
+        
         for (int i = levelSegments.Length - 1; i >= 0; i--)
         {
             var segment = levelSegments[i];
@@ -61,6 +66,34 @@ public class LevelController : Singleton<LevelController>
             {
                 segment.transform.position = SpawnPosition;
             }
+        }
+        
+        UpdatePlayerMovementOutside();
+        
+        if(_currentSpeed<=0)
+        {
+            _currentSpeed = 0;
+        }
+    }
+    
+
+    private void UpdatePlayerMovementOutside()
+    {
+        if (_playerStateController.PlayerState == PlayerState.Running)
+        {
+            _currentSpeed -= _gameSettings.acceleration.x * Time.deltaTime;
+            _currentSpeed = Mathf.Clamp(_gameSettings.levelMoveSpeed, _gameSettings.levelMoveSpeed,Mathf.Infinity);
+        }
+        
+        if (Vector3.Dot(_playerController.transform.up, Vector3.forward) >= 0)
+        {
+            Debug.Log("+ " + Vector3.Dot(_playerController.transform.forward, Vector3.up));
+            _currentSpeed += _gameSettings.acceleration.y * Time.deltaTime;
+        }
+        else if (Vector3.Dot(_playerController.transform.up, Vector3.forward) < 0)
+        {
+            Debug.Log("-" + Vector3.Dot(_playerController.transform.forward, Vector3.up));
+            _currentSpeed -= _gameSettings.acceleration.x * Time.deltaTime;
         }
     }
 }

@@ -1811,6 +1811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306571abd59d44d45b7939fd0696ac54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Pivot: {fileID: 4943500522849135716}
   groundChecker: {fileID: 506986471518366107}
   stackHandler: {fileID: 3216003148174667694}
 --- !u!114 &2252113451418658688
@@ -3619,6 +3620,10 @@ PrefabInstance:
     - target: {fileID: 2879110242969465747, guid: 2f38dda024edd4458b27c4c237e34a20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612505927037940272, guid: 2f38dda024edd4458b27c4c237e34a20, type: 3}
+      propertyPath: stackStep
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8709087216149539222, guid: 2f38dda024edd4458b27c4c237e34a20, type: 3}
       propertyPath: m_Name

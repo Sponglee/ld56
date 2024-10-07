@@ -52,6 +52,6 @@ MonoBehaviour:
   rentIncrease: 250
   daysToRent: 2
   speedBoost: 2
+  acceleration: {x: 5, y: 2}
   boostDuration: 4
-  moveSpeed: 5
   levelMoveSpeed: 7.5
