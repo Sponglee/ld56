@@ -731,19 +731,23 @@ PrefabInstance:
     - target: {fileID: 2263468151967438767, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 39f2a5d8ea2274ac28773e697a0affe0, type: 3}
+      objectReference: {fileID: 21300000, guid: a05165f99b3c94fb0a7ca6e96a6fd3f6, type: 3}
     - target: {fileID: 3094053115773308210, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: m_Name
       value: DistractionDispenser
       objectReference: {fileID: 0}
     - target: {fileID: 5033360082382042295, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: m_text
-      value: HOTDOG 15$
+      value: COFEEt
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033360082382042295, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5480862516892879966, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 93b50938412f14470b92ca45eb23fde5, type: 2}
+      objectReference: {fileID: 2100000, guid: f1d6bab86b76d4fa8a2dd930c050320e, type: 2}
     - target: {fileID: 5717143267683514631, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: spread.z
       value: 0.5
@@ -755,7 +759,7 @@ PrefabInstance:
     - target: {fileID: 5717143267683514631, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: dispenserPrefab
       value: 
-      objectReference: {fileID: 2456346613233689438, guid: 4fefa931f1fc54b77b03b1c7a05fda1b, type: 3}
+      objectReference: {fileID: 1211620890799535005, guid: aba258ca3ca3244758d404f9027b5d82, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -817,6 +821,10 @@ PrefabInstance:
     - target: {fileID: 4187037838051066170, guid: 64ca99c3272c44acd91e4aa76547d911, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570340574188849834, guid: 64ca99c3272c44acd91e4aa76547d911, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1572,6 +1580,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6435891031913407265}
     m_Modifications:
+    - target: {fileID: 263394497278667569, guid: 64ca99c3272c44acd91e4aa76547d911, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 2032693840253679451, guid: 64ca99c3272c44acd91e4aa76547d911, type: 3}
       propertyPath: m_Name
       value: CarTrack (2)

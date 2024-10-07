@@ -18,7 +18,7 @@ public class GameStateManager : Singleton<GameStateManager>
     private void Start()
     {
         ChangeState(GameState.Paused);
-
+        dayPassed?.Invoke();
         currentDay = 0;
     }
 

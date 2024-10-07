@@ -1716,11 +1716,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 645467957494779728, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -4.2
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: 645467957494779728, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.6
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 739161635704863881, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1772,7 +1772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5033360082382042295, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: m_text
-      value: HOTDOGS 15$
+      value: SPEED
       objectReference: {fileID: 0}
     - target: {fileID: 5480862516892879966, guid: 4b76df8be3975447da7b64b7a74ddefa, type: 3}
       propertyPath: m_Materials.Array.data[0]
