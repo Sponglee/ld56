@@ -24,7 +24,8 @@ public class MoneyUIView : MonoBehaviour
 
     private void MoneyHandler(int amount)
     {
+        var money = amount;
         _tweener?.Kill();
-        _tweener = moneyText.DOText(amount.ToString(), fillDuration);
+        _tweener = moneyText.DOText($"${money}", fillDuration);
     }
 }

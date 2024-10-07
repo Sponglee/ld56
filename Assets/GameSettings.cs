@@ -9,15 +9,18 @@ public class GameSettings : Singleton<GameSettings>
     public int distractionMoneyAmount;
     public int obstacleHitMoneyAmount;
     public int moneyAddAmount;
-    [FormerlySerializedAs("moneyStatAmount")] public int moneyStartAmount = 250;
+    public int moneyStartAmount = 250;
     public int rentCost;
-
-
-    public int moveSpeed;
     public int daysToRent;
 
 
-    public float inputDelay;
+    [Header("SPEED")]
+    public float speedBoost = 1.5f;
+
+    public float boostDuration = 1f;
+    public float moveSpeed;
+    public float levelMoveSpeed;
+    
 
     public int GetRentCost()
     {
