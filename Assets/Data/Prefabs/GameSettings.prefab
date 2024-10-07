@@ -48,10 +48,10 @@ MonoBehaviour:
   obstacleHitMoneyAmount: 150
   moneyAddAmount: 50
   moneyStartAmount: 160
-  rentCost: 1500
+  rentCost: 500
   rentIncrease: 250
   daysToRent: 2
   speedBoost: 5
-  acceleration: {x: 3, y: 1}
+  acceleration: {x: 3, y: 0.5}
   boostDuration: 4
   levelMoveSpeed: 7.5
