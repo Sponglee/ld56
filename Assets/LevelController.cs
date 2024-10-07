@@ -79,7 +79,7 @@ public class LevelController : Singleton<LevelController>
 
     private void UpdatePlayerMovementOutside()
     {
-        if (_playerStateController.PlayerState == PlayerState.Running)
+        if (_playerStateController.PlayerState == PlayerState.Home)
         {
             _currentSpeed -= _gameSettings.acceleration.x * Time.deltaTime;
             _currentSpeed = Mathf.Clamp(_gameSettings.levelMoveSpeed, _gameSettings.levelMoveSpeed,Mathf.Infinity);
@@ -87,12 +87,10 @@ public class LevelController : Singleton<LevelController>
         
         if (Vector3.Dot(_playerController.transform.up, Vector3.forward) >= 0)
         {
-            Debug.Log("+ " + Vector3.Dot(_playerController.transform.forward, Vector3.up));
             _currentSpeed += _gameSettings.acceleration.y * Time.deltaTime;
         }
         else if (Vector3.Dot(_playerController.transform.up, Vector3.forward) < 0)
         {
-            Debug.Log("-" + Vector3.Dot(_playerController.transform.forward, Vector3.up));
             _currentSpeed -= _gameSettings.acceleration.x * Time.deltaTime;
         }
     }

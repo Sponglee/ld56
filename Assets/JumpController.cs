@@ -23,7 +23,10 @@ public class JumpController : MonoBehaviour
 
     private void OnDestroy()
     {
-        _gameStateManager.stateChanged -= UpdateJump;
+        if (_gameStateManager != null)
+        {
+            _gameStateManager.stateChanged -= UpdateJump;
+        }
     }
 
     private void UpdateJump(GameState state)

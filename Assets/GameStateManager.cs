@@ -58,7 +58,7 @@ public class GameStateManager : Singleton<GameStateManager>
             {
                 DOVirtual.DelayedCall(2f, () =>
                 {
-                    ChangeState(GameState.GameOver);
+                    ChangeState(GameState.Rent);
                     // MoneyManager.Instance.AddMoney(-currentMoney);
                 });
             }
@@ -97,6 +97,10 @@ public class GameStateManager : Singleton<GameStateManager>
                 CanvasManager.Instance.ToggleCanvas("GameOverCanvas", true);
                 CanvasManager.Instance.ToggleCanvas("MoneyCanvas", false);
                 break;
+            case GameState.Rent:
+                CanvasManager.Instance.ToggleCanvas("RentOverCanvas", true);
+                CanvasManager.Instance.ToggleCanvas("MoneyCanvas", false);
+                break;
         }
     }
 }
@@ -105,5 +109,6 @@ public enum GameState
 {
     Playing,
     GameOver,
-    Paused
+    Paused,
+    Rent
 }

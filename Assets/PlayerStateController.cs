@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class PlayerStateController : Singleton<PlayerStateController>
 {
+    public event Action<PlayerState> playerStateChanged;
+    
     public PlayerState PlayerState;
     public ToggleCoatController toggleCoatController;
     public GroundChecker groundChecker;
@@ -19,7 +22,7 @@ public class PlayerStateController : Singleton<PlayerStateController>
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Inside"))
         {
-            ChangeState(PlayerState.Running);
+            ChangeState(PlayerState.Home);
             groundChecker.IsChecking = false;
             toggleCoatController.ToggleCoat(false);
             tiltController.TiltSideways();
@@ -31,11 +34,12 @@ public class PlayerStateController : Singleton<PlayerStateController>
     public void ChangeState(PlayerState targetState)
     {
         PlayerState = targetState;
+        playerStateChanged?.Invoke(targetState);
     }
 }
 
 public enum PlayerState
 {
     Assembled,
-    Running
+    Home
 }
