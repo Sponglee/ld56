@@ -11,7 +11,7 @@ public class GameSettings : Singleton<GameSettings>
     public int moneyAddAmount;
     public int moneyStartAmount = 250;
     public int rentCost;
-    public float rentIncrease;
+    public int rentIncrease;
     public int daysToRent;
 
 
@@ -24,7 +24,7 @@ public class GameSettings : Singleton<GameSettings>
 
     public int GetRentCost()
     {
-        return rentCost;
+        return rentCost + rentIncrease*PlayerPrefs.GetInt("Iteration",1);
     }
 
     public int GetRentDays()
