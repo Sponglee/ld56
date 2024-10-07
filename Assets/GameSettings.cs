@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +21,15 @@ public class GameSettings : Singleton<GameSettings>
     public Vector2 acceleration;
     public float boostDuration = 1f;
     public float levelMoveSpeed;
-    
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 
     public int GetRentCost()
     {
