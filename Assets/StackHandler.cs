@@ -48,6 +48,7 @@ public class StackHandler : MonoBehaviour
         if (_isInitialized)
         {
             _isInitialized = false;
+            
         }
         else
         {
@@ -76,8 +77,10 @@ public class StackHandler : MonoBehaviour
     }
     public void ClearStack()
     {
-        for (int i = 0; i < stack.Count; i++)
+        for (int i = 0; i < stackMax; i++)
         {
+            if(stack.Count <= 0) break;
+            
             var paper = stack.Pop();
             Destroy(paper.gameObject);
         }
@@ -106,6 +109,8 @@ public class StackHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if(!_isInitialized) return;
+
         IsAtTarget = false;
     }
 }
