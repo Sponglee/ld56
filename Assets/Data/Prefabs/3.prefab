@@ -266,7 +266,7 @@ Transform:
   m_GameObject: {fileID: 2369619499625031807}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.38, y: 0.79, z: -47.31}
+  m_LocalPosition: {x: 19.4, y: 0.79, z: -47.31}
   m_LocalScale: {x: 17.38347, y: 9.8123, z: 9.8123}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -452,7 +452,7 @@ Transform:
   m_GameObject: {fileID: 4204346603160917254}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.38, y: 0.79, z: 22.6}
+  m_LocalPosition: {x: 15.38, y: 0.79, z: 24.26}
   m_LocalScale: {x: 17.38347, y: 9.8123, z: 9.8123}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -504,7 +504,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.1}
+  m_Size: {x: 1, y: 1, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4338726111006096325
 GameObject:
@@ -1945,6 +1945,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: bush (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6317578925029434746, guid: 96bc3b40043e248a392134341579d453, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85af57b78e44145c6b8c715744bbb6ec, type: 2}
+    - target: {fileID: 8100320773420232829, guid: 96bc3b40043e248a392134341579d453, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77cdf1322d561468880a5e54a276d698, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2007,6 +2015,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6317578925029434746, guid: 934d7a8b476124abfa7f736b1b748dca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85af57b78e44145c6b8c715744bbb6ec, type: 2}
+    - target: {fileID: 8100320773420232829, guid: 934d7a8b476124abfa7f736b1b748dca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77cdf1322d561468880a5e54a276d698, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2068,6 +2084,14 @@ PrefabInstance:
     - target: {fileID: 3239353352453558186, guid: a5101f73a0fb0484d82e643b223208c4, type: 3}
       propertyPath: m_Name
       value: OfficeTable (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470861140553406934, guid: a5101f73a0fb0484d82e643b223208c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470861140553406934, guid: a5101f73a0fb0484d82e643b223208c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.038
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2193,6 +2217,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6317578925029434746, guid: 934d7a8b476124abfa7f736b1b748dca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85af57b78e44145c6b8c715744bbb6ec, type: 2}
+    - target: {fileID: 8100320773420232829, guid: 934d7a8b476124abfa7f736b1b748dca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77cdf1322d561468880a5e54a276d698, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

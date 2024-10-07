@@ -24,8 +24,9 @@ public class MoneyUIView : MonoBehaviour
 
     private void MoneyHandler(int amount)
     {
+        var maxMoney = GameSettings.Instance.GetRentCost();
         var money = amount;
         _tweener?.Kill();
-        _tweener = moneyText.DOText($"${money}", fillDuration);
+        _tweener = moneyText.DOText($"${money}/{maxMoney}", fillDuration);
     }
 }

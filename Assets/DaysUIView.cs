@@ -28,6 +28,6 @@ public class DaysUIView : MonoBehaviour
         var currentDay = GameStateManager.Instance.GetCurrentDay();
         var daysLeft = daysToRent - currentDay; 
         _tweener?.Kill();
-        _tweener = daysText.DOText($"DAYS: {daysLeft}", fillDuration);
+        _tweener = daysText.DOText($"RENT DUE: {daysLeft} DAYS", fillDuration);
     }
 }

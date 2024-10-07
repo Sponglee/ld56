@@ -12,7 +12,7 @@ public class RentText : MonoBehaviour
 
     private void Awake()
     {
-        MoneyManager.Instance.moneyChanged += UpdateText;
+
         GameStateManager.Instance.dayPassed += UpdateRent;
 
         UpdateRent();
@@ -20,10 +20,6 @@ public class RentText : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (MoneyManager.Instance != null)
-        {
-            MoneyManager.Instance.moneyChanged -= UpdateText;
-        }
 
         if (GameStateManager.Instance != null)
         {
@@ -36,12 +32,14 @@ public class RentText : MonoBehaviour
         maxRentDays = GameSettings.Instance.GetRentDays();
         currentDay = GameStateManager.Instance.GetCurrentDay();
 
-        daysText.text = $"RENT DUE IN: {maxRentDays - currentDay} DAYS";
+        daysText.text = $"PAY THE RENT IN: {maxRentDays - currentDay} DAYS";
+        
+        UpdateText();
     }
 
-    private void UpdateText(int amount)
+    private void UpdateText()
     {
         maxAmount = GameSettings.Instance.GetRentCost();
-        rentText.text = $"MONEY TO PAY: ${amount} / ${maxAmount}";
+        rentText.text = $"MONEY TO PAY: ${maxAmount}";
     }
 }

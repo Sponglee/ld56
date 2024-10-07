@@ -24,7 +24,8 @@ public class GameSettings : Singleton<GameSettings>
 
     public int GetRentCost()
     {
-        return rentCost + rentIncrease*PlayerPrefs.GetInt("Iteration",1);
+        var iteration = GameStateManager.Instance.Iteration;
+        return rentCost + rentIncrease*iteration;
     }
 
     public int GetRentDays()
