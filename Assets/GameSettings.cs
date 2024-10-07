@@ -11,12 +11,12 @@ public class GameSettings : Singleton<GameSettings>
     public int moneyAddAmount;
     public int moneyStartAmount = 250;
     public int rentCost;
+    public float rentIncrease;
     public int daysToRent;
 
 
     [Header("SPEED")]
     public float speedBoost = 1.5f;
-
     public float boostDuration = 1f;
     public float moveSpeed;
     public float levelMoveSpeed;
